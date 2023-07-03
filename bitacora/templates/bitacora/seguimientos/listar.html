@@ -1,0 +1,78 @@
+{% extends 'bitacora/base/base_admin.html' %}
+
+{% block content %}
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+
+                        <h1 class="mt-4 container  d-flex justify-content-around">Tabla  {{ titulo }} <a href="{% url 'crear_seguimiento' %}" class="btn btn-dark">&nbsp;Crear&nbsp;<i class="fa fa-plus" aria-hidden="true"></i> </a>
+</h1>
+
+                        <div class="card mb-4">
+
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Listado de  {{ titulo }}
+                            </div>
+
+                            <div class="card-body">
+
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Fecha Recibo</th>
+                                            <th>Empleado Origen</th>
+                                            <th>Empleado Destino</th>
+                                            <th>Estado</th>
+                                             <th>Producto</th>
+                                            <th>Depto Inicial</th>
+                                            <th>Depto Final</th>                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Fecha Recibo</th>
+                                            <th>Empleado Origen</th>
+                                            <th>Empleado Destino</th>
+                                            <th>Estado</th>
+                                             <th>Producto</th>
+                                            <th>Depto Inicial</th>
+                                            <th>Depto Final</th>                                         <th>Acciones</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                      {% for data in dataset %}
+                                        <tr>
+                                            <td>{{data.id}}</td>
+                                            <td>{{data.nombre}}</td>
+                                            <td>{{data.fecha_recibo}}</td>
+                                            <td>{{data.nombre_empleado_origen}}</td>
+                                            <td>{{data.nombre_empleado_destino}}</td>
+                                            <td>{{data.estado}}</td>
+                                            <td>{{data.producto}}</td>
+                                            <td>{{data.departamento_inicial}}</td>
+                                            <td>{{data.departamento_final}}</td>
+                                                 <td>
+            <a href="visualizar/{{ data.id }}"><i class="fa-solid fa-eye"></i></a>
+           <a href="actualizar/{{ data.id }}"><i class="fa-solid fa-pencil"></i></a>
+         <a href="eliminar/{{ data.id }}"><i class="fa-solid fa-trash"></i></a>
+        </td>
+                                        </tr>
+                                            {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+               
+                    </div>
+                </footer>
+            </div>
+{% endblock %}

@@ -1,0 +1,84 @@
+
+{% extends 'bitacora/base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container content mt-4">
+      <h3>Formulario de Registro Almacen</h3>
+      <form method="GET"  action="{% url 'registro_almacen_continuacion' %}">
+        {% csrf_token %}
+       {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Siguiente</button>
+      </form>
+
+      <h3>Inventario</h3>
+      <table class="table">
+        <thead>
+          <tr>
+             <th>Lote</th>
+            <th>Factura</th>
+
+            <th>Proveedor</th>
+            <th>Fecha de Llegada</th>
+
+
+                <th>Producto Catmatpeligroso </th>
+
+
+
+
+
+
+
+
+
+            <th>Tipo UProducto</th>
+            <th>Unidad USubProducto</th>
+            <th>Cantidad USubProducto</th>
+
+            <th>Fecha de Caducidad UProducto</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in dataset %}
+
+                                            <td>{{data.lote }}</td>
+                                            <td>{{data.factura }}</td>
+                                            <td>{{data.proveedor }}</td>
+                                            <td>{{data.fecha_llegada }}</td>
+               <td>{{data.producto.cat_material_peligro.nombre }}</td>
+
+
+
+
+
+
+
+
+
+                                            <td>{{data.producto.nombre }}</td>
+
+              <td>{{data.producto.u_sub_producto.nombre }}</td>
+              <td>{{data.producto.u_sub_producto.cantidad }}</td>
+
+           <td>{{data.producto.fecha_caducidad }}</td>
+
+
+            {% endfor %}
+        </tbody>
+      </table>
+
+
+      
+    </div>
+
+  <script>
+  function AlmacenDos() {
+    console.log('Se hizo clic en el botón "Siguiente"');
+    window.location.href = 'AlmacenDos.html';
+  }
+</script>
+
+
+{% endblock %}

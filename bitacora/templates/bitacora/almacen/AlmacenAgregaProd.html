@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistema Trazabilidad</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container-fluid {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex: 1 0 auto;
+    }
+
+    .footer {
+      flex-shrink: 0;
+    }
+
+    .footer-img {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col text-center">
+        <img src="https://www.cdcuauhtemoc.tecnm.mx/wp-content/uploads/2021/08/Logo-TecNM.png" alt="Imagen Izquierda" class="header-img" style="width: 200px; height: 100px">
+      </div>
+      <div class="col text-center">
+        <img src="https://www.tolucatecnm.mx/images/pages/6/pageimgog-120546.png" alt="Imagen Centro" class="header-img" style="width: 100px; height: 100px">
+      </div>
+      <div class="col text-center">
+        <img src="https://w7.pngwing.com/pngs/485/316/png-transparent-reuse-reduce-recycle-logo-environmental-management-system-waste-management-natural-environment-recycle-bin-leaf-logo-waste.png" alt="Imagen Derecha" class="header-img" style="width: 100px; height: 100px">
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="https://www.tolucatecnm.mx/images/pages/6/pageimgog-120546.png" alt="Logo" style="width: 50px; height: 50px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="">Nuevo Material</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <img src="" alt="Imagen de Perfil" style="width: 50px; height: 50px; border-radius: 50%;">
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cerrar Sesión</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+
+
+    
+
+
+
+
+
+     <div class="container">
+  <h1>Formulario de Agregar Productos</h1>
+  <button class="btn btn-primary" id="mostrarFormulario" onclick="mostrarFormulario()">Agregar Producto</button>
+  <form id="formulario" style="display: none;">
+    <div class="form-group">
+      <label for="producto">Producto:</label>
+      <select class="form-control" id="producto" onchange="showCantidadInput()">
+        <!-- Aquí puedes cargar los productos desde la base de datos -->
+        <option value="">Seleccione un producto</option>
+        <option value="producto1">Producto 1</option>
+        <option value="producto2">Producto 2</option>
+        <option value="producto3">Producto 3</option>
+        <!-- Agrega más opciones según tus productos -->
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="tipo">Tipo:</label>
+      <select class="form-control" id="tipo" onchange="showCantidadInput()">
+        <option value="">Seleccione un tipo</option>
+        <option value="caja">Caja</option>
+        <option value="paquete">Paquete</option>
+      </select>
+    </div>
+    <div class="form-group" id="cantidadInputDiv" style="display: none;">
+      <label for="unidad">Unidad:</label>
+      <select class="form-control" id="unidad" disabled>
+        <option value="">Seleccione una unidad</option>
+      </select>
+    </div>
+    <div class="form-group" id="numeroInputDiv" style="display: none;">
+      <label for="cantidad">Cantidad:</label>
+      <input type="number" class="form-control" id="cantidad" min="0" step="1" disabled>
+    </div>
+    <div class="form-group">
+      <label for="descripcion">Descripción:</label>
+      <textarea class="form-control" id="descripcion" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" onclick="agregarProducto()">Agregar Producto</button>
+  </form>
+  
+  <h2>Productos Agregados:</h2>
+    <table id="tablaProductos" class="table">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Tipo</th>
+          <th>Unidad</th>
+          <th>Cantidad</th>
+          <th>Editar</th>
+          <th>Borrar</th>
+        </tr>
+      </thead>
+      <tbody id="listaProductos"></tbody>
+    </table>
+  </div>
+
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+
+
+
+<script>
+  function mostrarFormulario() {
+    var formulario = document.getElementById("formulario");
+    var botonMostrar = document.getElementById("mostrarFormulario");
+
+    if (formulario.style.display === "none") {
+      formulario.style.display = "block";
+      botonMostrar.innerText = "Agregar Producto";
+    } else {
+      formulario.style.display = "none";
+      botonMostrar.innerText = "+";
+    }
+  }
+
+  function showCantidadInput() {
+    var tipoSeleccionado = document.getElementById("tipo").value;
+    var cantidadInputDiv = document.getElementById("cantidadInputDiv");
+    var cantidadInput = document.getElementById("cantidad");
+    var numeroInputDiv = document.getElementById("numeroInputDiv");
+    var numeroInput = document.getElementById("numero");
+
+    if (tipoSeleccionado === "caja") {
+      cantidadInputDiv.style.display = "block";
+      cantidadInput.disabled = false;
+
+      // Vaciar opciones y agregar opciones específicas para "caja"
+      cantidadInput.innerHTML = "";
+      var option1 = document.createElement("option");
+      option1.value = "galones";
+      option1.innerText = "Galones";
+      cantidadInput.appendChild(option1);
+
+      var option2 = document.createElement("option");
+      option2.value = "litros";
+      option2.innerText = "Litros";
+      cantidadInput.appendChild(option2);
+
+      numeroInputDiv.style.display = "block";
+      numeroInput.disabled = false;
+    } else if (tipoSeleccionado === "paquete") {
+      cantidadInputDiv.style.display = "block";
+      cantidadInput.disabled = false;
+
+      // Vaciar opciones y agregar opciones específicas para "paquete"
+      cantidadInput.innerHTML = "";
+      var option3 = document.createElement("option");
+      option3.value = "pieza";
+      option3.innerText = "Pieza";
+      cantidadInput.appendChild(option3);
+
+      numeroInputDiv.style.display = "none";
+      numeroInput.disabled = true;
+    } else {
+      cantidadInputDiv.style.display = "none";
+      cantidadInput.disabled = true;
+
+      numeroInputDiv.style.display = "none";
+      numeroInput.disabled = true;
+    }
+
+
+  }
+
+function agregarProducto() {
+  var producto = document.getElementById("producto").value;
+  var tipo = document.getElementById("tipo").value;
+  var cantidad = document.getElementById("cantidad").value;
+  var numero = document.getElementById("numero").value;
+  var descripcion = document.getElementById("descripcion").value;
+
+  if (producto && tipo && descripcion) {
+    var tablaProductos = document.getElementById("tablaProductos");
+    var fila = tablaProductos.insertRow();
+
+    // Columna Producto
+    var columnaProducto = fila.insertCell();
+    columnaProducto.innerHTML = producto;
+
+    // Columna Tipo
+    var columnaTipo = fila.insertCell();
+    columnaTipo.innerHTML = tipo;
+
+    // Columna Cantidad
+    var columnaCantidad = fila.insertCell();
+    columnaCantidad.innerHTML = cantidad;
+
+    // Columna Editar
+    var columnaEditar = fila.insertCell();
+    columnaEditar.innerHTML = "<i class='fas fa-edit'></i>";
+
+    // Columna Borrar
+    var columnaBorrar = fila.insertCell();
+    columnaBorrar.innerHTML = "<i class='fas fa-trash'></i>";
+
+    // Reset form values
+    document.getElementById("producto").value = "";
+    document.getElementById("tipo").value = "";
+    document.getElementById("cantidad").value = "";
+    document.getElementById("numero").value = "";
+    document.getElementById("descripcion").value = "";
+  }
+}
+
+  
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer class="footer bg-dark text-white mt-auto">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h5>Enlaces</h5>
+            <ul class="list-unstyled">
+              <li><a href="Index.html">Inicio</a></li>
+              <li><a href="https://www.tolucatecnm.mx/">Instituto Tecnologico de Toluca</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-4"></div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-6">
+            <p>&copy; 2023 Instituto Tecnologico de Toluca.</p>
+          </div>
+          <div class="col-md-6 text-md-right">
+            <p><a href="#"></a></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

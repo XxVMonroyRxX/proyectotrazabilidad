@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistema Trazabilidad</title>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .footer-img {
+      width: 200px; /* Ajusta el tamaño según tus necesidades */
+      height: 200px;
+    }
+
+    .carousel-wrapper {
+      background-color: #f8f9fa;
+    }
+    p {
+      color: grey;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <img src="https://www.cdcuauhtemoc.tecnm.mx/wp-content/uploads/2021/08/Logo-TecNM.png" alt="Imagen Izquierda" class="header-img" style="width: 200px; height: 100px">
+      </div>
+      <div class="col text-center">
+        <img src="https://www.tolucatecnm.mx/images/pages/6/pageimgog-120546.png" alt="Imagen Centro" class="header-img" style="width: 100px; height: 100px">
+      </div>
+      <div class="col text-center">
+        <img src="https://w7.pngwing.com/pngs/485/316/png-transparent-reuse-reduce-recycle-logo-environmental-management-system-waste-management-natural-environment-recycle-bin-leaf-logo-waste.png" alt="Imagen Derecha" class="header-img" style="width: 100px; height: 100px">
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="https://www.tolucatecnm.mx/images/pages/6/pageimgog-120546.png" alt="Logo" style="width: 50px; height: 50px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+           <li class="nav-item active">
+            <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
+          </li>
+          {% if 'sesion_usuario' in request.session %}
+              <li class="nav-item">
+            <a class="nav-link" href="{% url 'reg_seguimiento' %}">Seguimientos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'almacen_inicio' %}">Almacen</a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" href="{% url 'listar_usuarios' %}">Panel administracion</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="{% url 'inicio' %}">Bienvenido {{ request.session.sesion_usuario }}</a>
+          </li>
+                  <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Inicio de Sesión</a>
+          </li>
+                    <li class="nav-item">
+            <a class="nav-link" href="{% url 'registro' %}">Registro</a>
+          </li>
+          {% endif %}
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'acerca' %}">Acerca de</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+
+{% block content %}
+{% endblock %}
+
+<footer class="footer bg-dark text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Enlaces</h5>
+        <ul class="list-unstyled">
+          <li><a href="{% url 'inicio' %}">Inicio</a></li>
+          <li><a href="https://www.tolucatecnm.mx/">Instituto Tecnológico de Toluca</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-6">
+        <p>&copy; 2023 Instituto Tecnológico de Toluca. Todos los derechos reservados.</p>
+      </div>
+
+    </div>
+  </div>
+</footer>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

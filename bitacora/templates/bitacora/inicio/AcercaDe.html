@@ -1,0 +1,9 @@
+{% extends 'bitacora/base/base.html' %}
+
+{% block content %}
+{% if 'bitacora.auditor' in perms or 'bitacora.administrador' in perms %}
+El proyecto del foraneo
+{% endif %}
+
+{% endblock %}
+

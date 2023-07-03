@@ -1,0 +1,42 @@
+{% extends 'bitacora/base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div id="espacio-central" class="espacio-central">
+      <div id="seguimiento" class="seguimiento">
+        <form onsubmit="event.preventDefault(); agregarFila(this, this.parentNode.querySelector('table tbody'));">
+          <div class="form-group">
+            <label for="departamento">Departamento:</label>
+            <select class="form-control" id="departamento" name="departamento" onchange="bloquearCampos()">
+              <option value="departamento1">Departamento 1</option>
+              <option value="departamento2">Departamento 2</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="persona">Persona que recibe:</label>
+            <input type="text" class="form-control" id="persona" name="persona" required>
+          </div>
+          <div class="form-group">
+            <label for="material">Material:</label>
+            <select class="form-control" id="material" name="material">
+              <option value="">Seleccionar material</option>
+              <option value="1">Material 1</option>
+              <option value="2">Material 2</option>
+              <option value="3">Material 3</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" class="form-control" id="cantidad" name="cantidad" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Agregar Material</button>
+        </form>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-success">Entregar</button>
+         <br>   <br>
+    </div>
+
+{% endblock %}
+   <br>   <br>

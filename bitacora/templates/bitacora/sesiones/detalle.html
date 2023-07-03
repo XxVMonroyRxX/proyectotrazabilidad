@@ -1,0 +1,49 @@
+{% extends 'bitacora/base/base_admin.html' %}
+
+{%load crispy_forms_tags %}
+
+{%block content%}
+  {{ accion }}
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4 container  d-flex justify-content-around">{{accion}} de  {{ titulo }}
+</h1>                        <div class="card mb-4">
+                            <div class="card-header">
+                               <i class="fa-solid fa-list"></i>
+                                {{accion}} de  {{ titulo }}
+                            </div>
+                            <div class="card-body">
+
+        {% if accion == 'Actualizacion' %}
+    <form method="POST"  action="{% url 'actualizar_sesiones'  obj.id %}">
+        {% csrf_token %}
+       {{ form|crispy }}    <br>
+        <input type="submit" value="Actualizar" class="btn btn-dark">
+{% endif %}
+        {% if accion == 'Creacion'  %}
+                    <form method="POST"  action="{% url 'crear_sesiones' %}">
+        {% csrf_token %}
+       {{ form|crispy }}    <br>
+        <input type="submit" value="Crear" class="btn btn-dark">
+{% endif %}
+        {% if accion == 'Visualizacion' %}
+
+       {{ form|crispy }}    <br>
+                        <a href="{% url 'listar_sesiones'%}" class="btn btn-dark">Regresar</a>
+
+{% endif %}
+    </form>
+
+</div>
+</div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+
+                    </div>
+                </footer>
+            </div>
+{%endblock content%}

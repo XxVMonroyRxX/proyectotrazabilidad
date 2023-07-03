@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistema Trazabilidad</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    .footer-img {
+      width: 200px; /* Ajusta el tamaño según tus necesidades */
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <img src="https://www.cdcuauhtemoc.tecnm.mx/wp-content/uploads/2021/08/Logo-TecNM.png" alt="Imagen Izquierda" class="header-img" style="width: 200px; height: 100px">
+      </div>
+      <div class="col text-center">
+        <img src="https://www.tolucatecnm.mx/images/pages/6/pageimgog-120546.png" alt="Imagen Centro" class="header-img" style="width: 100px; height: 100px">
+      </div>
+      <div class="col text-center">
+        <img src="https://w7.pngwing.com/pngs/485/316/png-transparent-reuse-reduce-recycle-logo-environmental-management-system-waste-management-natural-environment-recycle-bin-leaf-logo-waste.png" alt="Imagen Derecha" class="header-img" style="width: 100px; height: 100px">
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="https://www.tolucatecnm.mx/images/pages/6/pageimgog-120546.png" alt="Logo" style="width: 50px; height: 50px;">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Principal</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <img src="img/warehouse.png" alt="Imagen de Perfil" style="width: 50px; height: 50px; border-radius: 50%;">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Cerrar Sesión</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col text-center mt-4">
+        <button class="btn btn-primary">Agregar</button>
+        <button class="btn btn-primary">Modificar</button>
+        <button class="btn btn-primary">Entregar</button>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col">
+        <form>
+           {% csrf_token %}
+             {{ form|crispy }}
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+  
+
+<script>
+    // Obtener la fecha actual
+    var fechaActual = new Date();
+    
+    // Formatear la fecha en formato 'YYYY-MM-DD'
+    var formattedDate = fechaActual.toISOString().split('T')[0];
+    
+    // Asignar la fecha formateada al elemento con el id 'fechaActual'
+    document.getElementById('fechaActual').textContent = formattedDate;
+  </script>
+
+<footer class="footer bg-dark text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Enlaces</h5>
+        <ul class="list-unstyled">
+          <li><a href="file:///C:/Users/Monroy/Desktop/Sistema%20Trazabilidad/PaginasWeb/PaginaInicio.html#">Inicio</a></li>
+          <li><a href="https://www.tolucatecnm.mx/">Instituto Tecnologico de Toluca</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+       
+      </div>
+      <div class="col-md-4">
+
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-6">
+        <p>&copy; 2023 Instituto Tecnologico de Toluca. Todos los derechos reservados.</p>
+      </div>
+      <div class="col-md-6 text-md-right">
+        <p>Desarrollado por <a href="#">Tu Nombre</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
